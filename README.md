@@ -29,9 +29,9 @@
 | **코어(Core)** | C++20 — 강력한 성능, 암호화 작업 시 지연 없음! |
 | **암호화(Cryptography)** | Windows 네이티브 Crypto API 사용 |
 | **금고(Vault)** | 로컬 DPAPI 암호화 금고. 키가 외부로 유출되지 않음! |
-| **가져오기(Import)** | Google Authenticator QR 마이그레이션 파싱 + ZXing C++ QR 디코딩 |
+| **가져오기(Import)** | Google Authenticator QR 마이그레이션 파싱 + ZXing-C++ QR 디코딩 |
 | **시간 동기화(Time Sync)** | 내장 C++ NTP 클라이언트를 통한 TOTP 시간 오차 방지 |
-| **사용자 인터페이스(UI)** | `CommunityToolkit.Mvvm`과 `WPF-UI`를 활용한 부드럽고 모던한 .NET 10 WPF 프론트엔드 |
+| **사용자 인터페이스(UI)** | `CommunityToolkit.Mvvm`과 `WPF-UI`를 활용한 모던한 프론트엔드 |
 
 ## 아키텍처
 
