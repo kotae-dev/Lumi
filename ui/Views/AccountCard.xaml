@@ -49,7 +49,6 @@
 
                 <!-- Code value (click to copy) -->
                 <Button Command="{Binding CopyCommand}"
-                        Style="{StaticResource CodeButton}"
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
