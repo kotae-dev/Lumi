@@ -23,12 +23,12 @@
             <TextBlock Text="Appearance" Style="{StaticResource TitleText}" Margin="0,0,0,12" />
 
             <TextBlock Text="Theme" Style="{StaticResource AccountLabel}" Margin="0,0,0,4" />
-            <ui:ComboBox x:Name="ThemeCombo" SelectedIndex="0" Margin="0,0,0,20"
-                         SelectionChanged="OnThemeChanged">
+            <ComboBox x:Name="ThemeCombo" SelectedIndex="0" Margin="0,0,0,20"
+                      SelectionChanged="OnThemeChanged">
                 <ComboBoxItem Content="System Default" Tag="system" />
                 <ComboBoxItem Content="Dark" Tag="dark" />
                 <ComboBoxItem Content="Light" Tag="light" />
-            </ui:ComboBox>
+            </ComboBox>
 
             <!-- Clipboard -->
             <TextBlock Text="Security" Style="{StaticResource TitleText}" Margin="0,0,0,12" />
