@@ -75,7 +75,7 @@ namespace Lumi.ViewModels
         {
             _native = native;
             Id = native.Id ?? string.Empty;
-            _issuer = native.Issuer ?? string.Empty;
+            _issuer = string.IsNullOrWhiteSpace(native.Issuer) ? "None" : native.Issuer;
             _name = native.Name ?? string.Empty;
 
             CopyCommand = new RelayCommand(CopyToClipboard);

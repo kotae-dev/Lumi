@@ -85,11 +85,11 @@
                                 <TextBlock Text="{Binding Code, Converter={StaticResource CodeFormatter}}"
                                            Style="{StaticResource CodeLabel}" />
                                 <TextBlock x:Name="HintLabel"
-                                           Text="Click to copy"
                                            HorizontalAlignment="Center"
                                            Margin="0,2,0,0">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock" BasedOn="{StaticResource HintLabel}">
+                                            <Setter Property="Text" Value="Click to copy" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding ShowCopied}" Value="True">
                                                     <Setter Property="Text" Value="Copied" />
