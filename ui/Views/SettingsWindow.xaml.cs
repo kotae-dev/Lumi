@@ -36,6 +36,14 @@ namespace Lumi.Views
                 item.Tag is string theme)
             {
                 ThemeService.Instance.SetTheme(theme);
+                
+                // Immediately apply to this window too
+                var themeEnum = theme switch {
+                    "dark" => Wpf.Ui.Appearance.ApplicationTheme.Dark,
+                    "light" => Wpf.Ui.Appearance.ApplicationTheme.Light,
+                    _ => Wpf.Ui.Appearance.ApplicationThemeManager.GetSystemTheme() == Wpf.Ui.Appearance.SystemTheme.Dark ? Wpf.Ui.Appearance.ApplicationTheme.Dark : Wpf.Ui.Appearance.ApplicationTheme.Light
+                };
+                Wpf.Ui.Appearance.ApplicationThemeManager.Apply(this);
             }
         }
     }
