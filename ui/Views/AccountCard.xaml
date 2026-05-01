@@ -1,0 +1,134 @@
+<UserControl x:Class="Lumi.Views.AccountCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:conv="clr-namespace:Lumi.Converters">
+
+    <UserControl.Resources>
+        <conv:TimeToArcConverter x:Key="TimeToArc" />
+        <conv:ExpiryColorConverter x:Key="ExpiryColor" />
+        <conv:BoolToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+
+    <Border Style="{StaticResource CardStyle}">
+        <Grid Margin="16,14">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- ═══ Left: Issuer + Name ═══ -->
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <!-- Issuer icon placeholder (first 2 letters) -->
+                <Border Background="{DynamicResource AccentDimBrush}"
+                        CornerRadius="6"
+                        Width="32" Height="32"
+                        HorizontalAlignment="Left"
+                        Margin="0,0,0,6">
+                    <TextBlock Text="{Binding Issuer, FallbackValue=??}"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource AccentBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                </Border>
+
+                <!-- Name (display mode) -->
+                <TextBlock Text="{Binding Name}"
+                           Style="{StaticResource IssuerLabel}"
+                           Visibility="{Binding IsEditing, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}"
+                           MouseLeftButtonDown="OnNameDoubleClick"
+                           Cursor="Hand"
+                           ToolTip="Double-click to edit" />
+
+                <!-- Name (edit mode) -->
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource InlineEditBox}"
+                         Visibility="{Binding IsEditing, Converter={StaticResource BoolToVis}}"
+                         LostFocus="OnEditLostFocus"
+                         KeyDown="OnEditKeyDown"
+                         x:Name="EditBox" />
+
+                <!-- Issuer subtitle -->
+                <TextBlock Text="{Binding Issuer}"
+                           Style="{StaticResource AccountLabel}" />
+            </StackPanel>
+
+            <!-- ═══ Right: Code + Countdown Ring ═══ -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+
+                <!-- Code button (click to copy) -->
+                <Button Command="{Binding CopyCommand}"
+                        Style="{StaticResource CodeButton}"
+                        ToolTip="Click to copy">
+                    <Grid>
+                        <!-- Normal code display -->
+                        <StackPanel Visibility="{Binding ShowCopied, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}">
+                            <TextBlock Text="{Binding FormattedCode}"
+                                       Style="{StaticResource CodeLabel}"
+                                       Foreground="{Binding IsExpiringSoon, Converter={StaticResource ExpiryColor}}" />
+                            <TextBlock Text="tap to copy"
+                                       Style="{StaticResource HintLabel}"
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+
+                        <!-- Copied feedback -->
+                        <StackPanel Visibility="{Binding ShowCopied, Converter={StaticResource BoolToVis}}">
+                            <TextBlock Text="✓ Copied"
+                                       Style="{StaticResource CodeLabel}"
+                                       FontSize="16"
+                                       Foreground="{DynamicResource SuccessBrush}"
+                                       HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <!-- Circular countdown ring -->
+                <Canvas Width="44" Height="44" Margin="12,0,0,0">
+                    <!-- Background ring -->
+                    <Ellipse Width="44" Height="44"
+                             Stroke="{DynamicResource RingTrackBrush}"
+                             StrokeThickness="3"
+                             Fill="Transparent" />
+
+                    <!-- Progress arc -->
+                    <Path Stroke="{DynamicResource AccentBrush}"
+                          StrokeThickness="3"
+                          StrokeLineCap="Round"
+                          Data="{Binding Progress, Converter={StaticResource TimeToArc}}" />
+
+                    <!-- Seconds label -->
+                    <TextBlock Text="{Binding SecondsLeft}"
+                               Style="{StaticResource TimerLabel}"
+                               Foreground="{Binding IsExpiringSoon, Converter={StaticResource ExpiryColor}}"
+                               Width="44" Height="44"
+                               TextAlignment="Center"
+                               Padding="0,14,0,0" />
+                </Canvas>
+            </StackPanel>
+
+            <!-- ═══ Context Menu ═══ -->
+            <Grid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy Code" Command="{Binding CopyCommand}">
+                        <MenuItem.Icon>
+                            <ui:SymbolIcon Symbol="Copy24" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Edit Name" Command="{Binding StartEditCommand}">
+                        <MenuItem.Icon>
+                            <ui:SymbolIcon Symbol="Edit24" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}"
+                              Foreground="{DynamicResource DangerBrush}">
+                        <MenuItem.Icon>
+                            <ui:SymbolIcon Symbol="Delete24" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </Grid.ContextMenu>
+        </Grid>
+    </Border>
+</UserControl>

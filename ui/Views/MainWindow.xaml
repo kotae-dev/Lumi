@@ -1,0 +1,125 @@
+<ui:FluentWindow x:Class="Lumi.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:Lumi.Views"
+        xmlns:vm="clr-namespace:Lumi.ViewModels"
+        xmlns:conv="clr-namespace:Lumi.Converters"
+        Title="Lumi"
+        Width="380" Height="680"
+        MinWidth="340" MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundBrush}"
+        ExtendsContentIntoTitleBar="True">
+
+    <Window.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVis" />
+        <conv:ExpiryColorConverter x:Key="ExpiryColor" />
+    </Window.Resources>
+
+    <Window.DataContext>
+        <vm:AccountListViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ═══ Title Bar ═══ -->
+        <ui:TitleBar Grid.Row="0"
+                     Title="Lumi"
+                     ShowMinimize="True"
+                     ShowMaximize="False"
+                     ShowClose="True" />
+
+        <!-- ═══ Search Bar ═══ -->
+        <Border Grid.Row="1" Margin="16,4,16,8">
+            <ui:TextBox x:Name="SearchBox"
+                        PlaceholderText="Search accounts…"
+                        Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
+                        Icon="{ui:SymbolIcon Search24}" />
+        </Border>
+
+        <!-- ═══ Account List ═══ -->
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <Grid>
+                <!-- Empty state -->
+                <StackPanel Visibility="{Binding HasAccounts, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Margin="0,60,0,0">
+                    <TextBlock Text="🔐"
+                               FontSize="48"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,16" />
+                    <TextBlock Text="No accounts yet"
+                               Style="{StaticResource TitleText}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,8" />
+                    <TextBlock Text="Import from Google Authenticator or add manually"
+                               Style="{StaticResource HintLabel}"
+                               HorizontalAlignment="Center"
+                               FontSize="12"
+                               Opacity="0.8" />
+                </StackPanel>
+
+                <!-- Account cards -->
+                <ItemsControl ItemsSource="{Binding FilteredAccounts}"
+                              Visibility="{Binding HasAccounts, Converter={StaticResource BoolToVis}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:AccountCard DataContext="{Binding}" Margin="0,2" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- ═══ Bottom Toolbar ═══ -->
+        <Border Grid.Row="3"
+                Background="{DynamicResource ToolbarBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="12,10">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Command="{Binding AddQrCommand}"
+                            Style="{StaticResource ToolbarButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="QrCode24" Margin="0,0,6,0" />
+                            <TextBlock Text="Scan QR" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding AddManualCommand}"
+                            Style="{StaticResource ToolbarButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="Add24" Margin="0,0,6,0" />
+                            <TextBlock Text="Add" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding AddUriCommand}"
+                            Style="{StaticResource ToolbarButton}"
+                            ToolTip="Paste otpauth:// URI from clipboard">
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Symbol="ClipboardPaste24" Margin="0,0,6,0" />
+                            <TextBlock Text="Paste URI" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <Button HorizontalAlignment="Right"
+                        Command="{Binding SettingsCommand}"
+                        Style="{StaticResource IconButton}"
+                        ToolTip="Settings">
+                    <ui:SymbolIcon Symbol="Settings24" />
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</ui:FluentWindow>

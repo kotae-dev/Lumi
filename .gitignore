@@ -1,0 +1,55 @@
+# Build outputs
+build/
+bin/
+obj/
+out/
+dist/output/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.cmake
+!CMakeLists.txt
+
+# C++ compiled
+*.obj
+*.o
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.dll
+*.exe
+*.log
+
+# .NET
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet
+packages/
+
+# Generated proto
+*.pb.c
+*.pb.h
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Vault (never commit user secrets!)
+*.lumi
+vault.lumi

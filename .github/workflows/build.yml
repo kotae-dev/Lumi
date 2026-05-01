@@ -1,0 +1,42 @@
+name: Lumi Build
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Install vcpkg OpenSSL
+      run: |
+        vcpkg install openssl:x64-windows
+
+    - name: Configure CMake
+      run: |
+        cmake -B build -G "Visual Studio 17 2022" -A x64 `
+          -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
+
+    - name: Build C++ Core
+      run: cmake --build build --config Release --target lumi_core --parallel
+
+    - name: Build WPF UI
+      run: dotnet publish ui/Lumi.csproj -c Release -r win-x64 --self-contained false -o build/bin/
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: lumi-build
+        path: build/bin/
