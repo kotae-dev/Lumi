@@ -18,11 +18,13 @@
             </Grid.ColumnDefinitions>
 
             <!-- ═══ Left: Issuer + Name ═══ -->
-            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,4">
                 <!-- Name (display mode) -->
                 <TextBlock Text="{Binding Name}"
                            Style="{StaticResource IssuerLabel}"
                            TextTrimming="CharacterEllipsis"
+                           MaxWidth="180"
+                           HorizontalAlignment="Left"
                            Visibility="{Binding IsEditing, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}"
                            MouseLeftButtonDown="OnNameDoubleClick"
                            Cursor="Hand"

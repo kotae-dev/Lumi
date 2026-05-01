@@ -9,7 +9,7 @@
         Width="380" Height="680"
         MinWidth="340" MinHeight="500"
         WindowStartupLocation="CenterScreen"
-        Background="{DynamicResource BackgroundBrush}"
+        Background="{DynamicResource ApplicationBackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
         Icon="/Assets/lumi-icon.ico">
 
@@ -83,33 +83,27 @@
         </ScrollViewer>
 
         <!-- ═══ Bottom Toolbar ═══ -->
+        <!-- ═══ Footer Toolbar ═══ -->
         <Border Grid.Row="3"
                 Background="{DynamicResource ToolbarBrush}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="0,1,0,0"
-                Padding="12,10">
+                Padding="20,16">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button Command="{Binding AddQrCommand}"
-                            Style="{StaticResource ToolbarButton}">
+                            Style="{StaticResource ToolbarButton}"
+                            Margin="0,0,12,0">
                         <StackPanel Orientation="Horizontal">
-                            <ui:SymbolIcon Symbol="QrCode24" Margin="0,0,6,0" />
-                            <TextBlock Text="Scan QR" VerticalAlignment="Center" />
+                            <ui:SymbolIcon Symbol="QrCode24" Margin="0,0,8,0" />
+                            <TextBlock Text="Import QR" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button Command="{Binding AddManualCommand}"
                             Style="{StaticResource ToolbarButton}">
                         <StackPanel Orientation="Horizontal">
-                            <ui:SymbolIcon Symbol="Add24" Margin="0,0,6,0" />
-                            <TextBlock Text="Add" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-                    <Button Command="{Binding AddUriCommand}"
-                            Style="{StaticResource ToolbarButton}"
-                            ToolTip="Paste otpauth:// URI from clipboard">
-                        <StackPanel Orientation="Horizontal">
-                            <ui:SymbolIcon Symbol="ClipboardPaste24" Margin="0,0,6,0" />
-                            <TextBlock Text="Paste URI" VerticalAlignment="Center" />
+                            <ui:SymbolIcon Symbol="Add24" Margin="0,0,8,0" />
+                            <TextBlock Text="Add Account" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                 </StackPanel>

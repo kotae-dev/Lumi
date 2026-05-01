@@ -5,7 +5,7 @@
         Title="Settings"
         Width="400" Height="360"
         WindowStartupLocation="CenterOwner"
-        Background="{DynamicResource BackgroundBrush}"
+        Background="{DynamicResource ApplicationBackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
         ResizeMode="NoResize">
 
