@@ -61,6 +61,12 @@ if ($LASTEXITCODE -ne 0) {
     Write-Host "  ✗ WPF build failed" -ForegroundColor Red
     exit 1
 }
+
+# Ensure lumi_core.dll is alongside Lumi.exe
+$dllPath = "$BuildDir/bin/$Config/lumi_core.dll"
+if (Test-Path $dllPath) {
+    Copy-Item $dllPath -Destination "$BuildDir/bin/" -Force
+}
 Write-Host "  ✓ Lumi.exe built" -ForegroundColor Green
 
 Write-Host "`n═══════════════════════════════════════" -ForegroundColor Cyan

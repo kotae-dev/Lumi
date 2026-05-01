@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\lumi-icon.ico" />
     <Resource Include="Assets\Fonts\JetBrainsMono-VariableFont_wght.ttf" />
     <Resource Include="Assets\Fonts\JetBrainsMono-Italic-VariableFont_wght.ttf" />
   </ItemGroup>
