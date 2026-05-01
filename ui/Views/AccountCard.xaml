@@ -46,29 +46,40 @@
             <!-- ═══ Right: Code + Countdown Ring ═══ -->
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
 
-                <!-- Code button (click to copy) -->
+                <!-- Code value (click to copy) -->
                 <Button Command="{Binding CopyCommand}"
                         Style="{StaticResource CodeButton}"
-                        ToolTip="Click to copy">
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
                     <Grid>
-                        <!-- Normal code display -->
-                        <StackPanel Visibility="{Binding ShowCopied, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}">
-                            <TextBlock Text="{Binding FormattedCode}"
-                                       Style="{StaticResource CodeLabel}"
-                                       Foreground="{Binding IsExpiringSoon, Converter={StaticResource ExpiryColor}}" />
-                            <TextBlock Text="tap to copy"
-                                       Style="{StaticResource HintLabel}"
-                                       HorizontalAlignment="Center" />
-                        </StackPanel>
+                        <!-- Code display -->
+                        <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                                CornerRadius="8"
+                                Padding="12,6"
+                                Visibility="{Binding ShowCopied, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding CurrentCode, Converter={StaticResource CodeFormatter}}"
+                                           Style="{StaticResource CodeLabel}" />
+                                <TextBlock Text="Click to copy"
+                                           Style="{StaticResource HintLabel}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,2,0,0" />
+                            </StackPanel>
+                        </Border>
 
                         <!-- Copied feedback -->
-                        <StackPanel Visibility="{Binding ShowCopied, Converter={StaticResource BoolToVis}}">
+                        <Border Background="{DynamicResource SystemFillColorSuccessBrush}"
+                                CornerRadius="8"
+                                Padding="12,6"
+                                Visibility="{Binding ShowCopied, Converter={StaticResource BoolToVis}}">
                             <TextBlock Text="✓ Copied"
                                        Style="{StaticResource CodeLabel}"
                                        FontSize="16"
-                                       Foreground="{DynamicResource SuccessBrush}"
-                                       HorizontalAlignment="Center" />
-                        </StackPanel>
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
                     </Grid>
                 </Button>
 
