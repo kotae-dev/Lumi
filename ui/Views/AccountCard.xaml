@@ -86,7 +86,6 @@
                                            Style="{StaticResource CodeLabel}" />
                                 <TextBlock x:Name="HintLabel"
                                            Text="Click to copy"
-                                           Style="{StaticResource HintLabel}"
                                            HorizontalAlignment="Center"
                                            Margin="0,2,0,0">
                                     <TextBlock.Style>
