@@ -3,9 +3,9 @@
 
 [Setup]
 AppName=Lumi
-AppVersion=1.0.0
-AppPublisher=Lumos Studios
-AppPublisherURL=https://github.com/lumos-studios/lumi
+AppVersion=Beta 1.0
+AppPublisher=kotae in LUMOS STUDIOS
+AppPublisherURL=https://github.com/kotae-dev/lumi
 DefaultDirName={autopf}\Lumi
 DefaultGroupName=Lumi
 OutputDir=..\..\dist
