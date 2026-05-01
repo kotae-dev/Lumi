@@ -3,27 +3,27 @@
 
     <!-- ═══ Brushes mapped to WPF-UI dynamic resources ═══ -->
     <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource ApplicationBackgroundColor}" />
-    <SolidColorBrush x:Key="SurfaceBrush" Color="{DynamicResource CardBackgroundFillColorDefault}" />
-    <SolidColorBrush x:Key="SurfaceAltBrush" Color="{DynamicResource ControlFillColorDefault}" />
-    <SolidColorBrush x:Key="BorderBrush" Color="{DynamicResource CardStrokeColorDefault}" />
-    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{DynamicResource TextFillColorPrimary}" />
-    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{DynamicResource TextFillColorSecondary}" />
+    <SolidColorBrush x:Key="SurfaceBrush" Color="{DynamicResource CardBackgroundFillColorDefaultColor}" />
+    <SolidColorBrush x:Key="SurfaceAltBrush" Color="{DynamicResource ControlFillColorDefaultColor}" />
+    <SolidColorBrush x:Key="BorderBrush" Color="{DynamicResource CardStrokeColorDefaultColor}" />
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{DynamicResource TextFillColorPrimaryColor}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{DynamicResource TextFillColorSecondaryColor}" />
     <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource SystemAccentColorPrimary}" />
     
     <!-- Custom Brushes based on transparency or specific uses -->
     <SolidColorBrush x:Key="AccentDimBrush" Color="{DynamicResource SystemAccentColorLight3}" Opacity="0.2" />
-    <SolidColorBrush x:Key="DangerBrush" Color="{DynamicResource SystemFillColorCritical}" />
-    <SolidColorBrush x:Key="SuccessBrush" Color="{DynamicResource SystemFillColorSuccess}" />
+    <SolidColorBrush x:Key="DangerBrush" Color="{DynamicResource SystemFillColorCriticalColor}" />
+    <SolidColorBrush x:Key="SuccessBrush" Color="{DynamicResource SystemFillColorSuccessColor}" />
 
     <!-- Titlebar / Toolbar -->
     <SolidColorBrush x:Key="TitleBarBrush" Color="Transparent" />
     <SolidColorBrush x:Key="ToolbarBrush" Color="Transparent" />
 
     <!-- Ring -->
-    <SolidColorBrush x:Key="RingTrackBrush" Color="{DynamicResource ControlFillColorDisabled}" />
+    <SolidColorBrush x:Key="RingTrackBrush" Color="{DynamicResource ControlFillColorDisabledColor}" />
     <SolidColorBrush x:Key="RingActiveBrush" Color="{DynamicResource SystemAccentColorPrimary}" />
 
     <!-- Card hover -->
-    <SolidColorBrush x:Key="CardHoverBrush" Color="{DynamicResource ControlFillColorSecondary}" />
+    <SolidColorBrush x:Key="CardHoverBrush" Color="{DynamicResource ControlFillColorSecondaryColor}" />
 
 </ResourceDictionary>
