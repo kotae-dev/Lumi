@@ -3,7 +3,7 @@ build/
 bin/
 obj/
 out/
-dist/output/
+dist/
 
 # IDE
 .vs/
@@ -28,7 +28,6 @@ cmake_install.cmake
 *.exp
 *.lib
 *.dll
-*.exe
 *.log
 
 # .NET
@@ -53,3 +52,5 @@ desktop.ini
 # Vault (never commit user secrets!)
 *.lumi
 vault.lumi
+
+Prompt.md
