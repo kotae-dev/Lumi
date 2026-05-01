@@ -94,7 +94,8 @@
                     <!-- Progress arc -->
                     <Path Stroke="{DynamicResource AccentBrush}"
                           StrokeThickness="3"
-                          StrokeLineCap="Round"
+                          StrokeStartLineCap="Round"
+                          StrokeEndLineCap="Round"
                           Data="{Binding Progress, Converter={StaticResource TimeToArc}}" />
 
                     <!-- Seconds label -->

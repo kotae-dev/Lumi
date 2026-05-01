@@ -14,6 +14,9 @@
 #include <vector>
 #include <filesystem>
 
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
 // ─── Thread-local error string ───────────────────────────────────
 static thread_local char g_last_error[512] = {};
 

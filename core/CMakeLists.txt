@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.25)
 
 # ─── ZXing-C++ submodule ──────────────────────────────────────────
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/third_party/zxing-cpp/CMakeLists.txt)
-    set(BUILD_READERS ON CACHE BOOL "" FORCE)
-    set(BUILD_WRITERS OFF CACHE BOOL "" FORCE)
-    set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+    set(ZXING_READERS ON CACHE BOOL "" FORCE)
+    set(ZXING_WRITERS OFF CACHE STRING "" FORCE)
+    set(ZXING_EXAMPLES OFF CACHE BOOL "" FORCE)
     add_subdirectory(third_party/zxing-cpp EXCLUDE_FROM_ALL)
 else()
     message(FATAL_ERROR "ZXing-C++ submodule not found — run: git submodule update --init --recursive")

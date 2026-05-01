@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <bcrypt.h>
 #include <cstring>
+#include <vector>
 
 #pragma comment(lib, "bcrypt.lib")
 

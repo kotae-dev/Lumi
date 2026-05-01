@@ -10,8 +10,9 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-#include <ZXing/ReadBarcode.h>
-#include <ZXing/ImageView.h>
+#include "ReadBarcode.h"
+#include "ImageView.h"
+#include "ReaderOptions.h"
 
 std::string decode_qr_from_file(const std::filesystem::path& image_path) {
     int w, h, ch;
@@ -22,11 +23,11 @@ std::string decode_qr_from_file(const std::filesystem::path& image_path) {
 
     ZXing::ImageView view(pixels, w, h, ZXing::ImageFormat::Lum);
 
-    ZXing::DecodeHints hints;
-    hints.setFormats(ZXing::BarcodeFormat::QRCode);
-    hints.setTryHarder(true);
+    ZXing::ReaderOptions opts;
+    opts.setFormats(ZXing::BarcodeFormat::QRCode);
+    opts.setTryHarder(true);
 
-    auto result = ZXing::ReadBarcode(view, hints);
+    auto result = ZXing::ReadBarcode(view, opts);
     stbi_image_free(pixels);
 
     if (!result.isValid()) {
