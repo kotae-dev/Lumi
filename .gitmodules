@@ -1,0 +1,7 @@
+[submodule "core/third_party/zxing-cpp"]
+	path = core/third_party/zxing-cpp
+	url = https://github.com/zxing-cpp/zxing-cpp.git
+
+[submodule "core/third_party/nanopb"]
+	path = core/third_party/nanopb
+	url = https://github.com/nanopb/nanopb.git
