@@ -8,6 +8,7 @@
         <conv:TimeToArcConverter x:Key="TimeToArc" />
         <conv:ExpiryColorConverter x:Key="ExpiryColor" />
         <conv:BoolToVisibilityConverter x:Key="BoolToVis" />
+        <conv:CodeFormatterConverter x:Key="CodeFormatter" />
     </UserControl.Resources>
 
     <Border Style="{StaticResource CardStyle}">
