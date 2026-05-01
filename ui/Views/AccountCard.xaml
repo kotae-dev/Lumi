@@ -92,7 +92,7 @@
                                         <Style TargetType="TextBlock" BasedOn="{StaticResource HintLabel}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding ShowCopied}" Value="True">
-                                                    <Setter Property="Text" Value="Copied!" />
+                                                    <Setter Property="Text" Value="Copied" />
                                                     <Setter Property="Foreground" Value="{DynamicResource SystemFillColorSuccessBrush}" />
                                                     <Setter Property="FontWeight" Value="Bold" />
                                                 </DataTrigger>
