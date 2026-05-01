@@ -21,7 +21,9 @@
                      ShowMinimize="False" ShowMaximize="False" />
 
         <!-- Form -->
-        <ScrollViewer Grid.Row="1" Margin="24,8,24,0">
+        <ScrollViewer Grid.Row="1" Margin="24,8,24,0"
+                      VerticalScrollBarVisibility="Hidden"
+                      CanContentScroll="False">
             <StackPanel>
                 <TextBlock Text="Add Account Manually"
                            Style="{StaticResource TitleText}"

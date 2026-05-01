@@ -48,8 +48,9 @@
 
         <!-- ═══ Account List ═══ -->
         <ScrollViewer Grid.Row="2"
-                      VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Disabled">
+                      VerticalScrollBarVisibility="Hidden"
+                      HorizontalScrollBarVisibility="Disabled"
+                      CanContentScroll="False">
             <Grid>
                 <!-- Empty state -->
                 <StackPanel Visibility="{Binding HasAccounts, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}"
