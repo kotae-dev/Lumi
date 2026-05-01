@@ -11,6 +11,7 @@
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource ApplicationBackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
+        ResizeMode="NoResize"
         Icon="/Assets/lumi-icon.ico">
 
     <Window.Resources>
