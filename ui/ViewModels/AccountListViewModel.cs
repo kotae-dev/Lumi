@@ -145,19 +145,53 @@ namespace Lumi.ViewModels
 
         private void OpenUriImport()
         {
-            // Get URI from clipboard
-            if (System.Windows.Clipboard.ContainsText())
+            try
             {
-                string uri = System.Windows.Clipboard.GetText().Trim();
-                if (uri.StartsWith("otpauth://"))
+                // Check if clipboard has image (QR code)
+                if (System.Windows.Clipboard.ContainsImage())
                 {
-                    var account = VaultManager.Instance.ImportFromUri(uri);
-                    if (account != null)
+                    var imageSource = System.Windows.Clipboard.GetImage();
+                    if (imageSource != null)
                     {
-                        VaultManager.Instance.SaveAccount(account);
-                        LoadAccounts();
+                        string tempFile = System.IO.Path.GetTempFileName() + ".png";
+                        using (var fileStream = new System.IO.FileStream(tempFile, System.IO.FileMode.Create))
+                        {
+                            var encoder = new System.Windows.Media.Imaging.PngBitmapEncoder();
+                            encoder.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(imageSource));
+                            encoder.Save(fileStream);
+                        }
+
+                        var imported = VaultManager.Instance.ImportFromQrFile(tempFile);
+                        System.IO.File.Delete(tempFile);
+
+                        if (imported.Any())
+                        {
+                            foreach (var account in imported)
+                                VaultManager.Instance.SaveAccount(account);
+                            LoadAccounts();
+                            return;
+                        }
                     }
                 }
+
+                // Fallback to text URI
+                if (System.Windows.Clipboard.ContainsText())
+                {
+                    string uri = System.Windows.Clipboard.GetText().Trim();
+                    if (uri.StartsWith("otpauth://") || uri.StartsWith("otpauth-migration://"))
+                    {
+                        var account = VaultManager.Instance.ImportFromUri(uri);
+                        if (account != null)
+                        {
+                            VaultManager.Instance.SaveAccount(account);
+                            LoadAccounts();
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // Ignore clipboard errors
             }
         }
 

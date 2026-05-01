@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Fonts\Inter-Variable.ttf" />
-    <Resource Include="Assets\Fonts\JetBrainsMono-Regular.ttf" />
+    <Resource Include="Assets\Fonts\JetBrainsMono-VariableFont_wght.ttf" />
+    <Resource Include="Assets\Fonts\JetBrainsMono-Italic-VariableFont_wght.ttf" />
   </ItemGroup>
 </Project>

@@ -31,11 +31,10 @@ namespace Lumi.Converters
 
             bool largeArc = angle > 180;
 
-            string pathData = $"M {startX.ToString("F2", CultureInfo.InvariantCulture)}," +
-                              $"{startY.ToString("F2", CultureInfo.InvariantCulture)} " +
+            string pathData = $"M {cx.ToString("F2", CultureInfo.InvariantCulture)},{cy.ToString("F2", CultureInfo.InvariantCulture)} " +
+                              $"L {startX.ToString("F2", CultureInfo.InvariantCulture)},{startY.ToString("F2", CultureInfo.InvariantCulture)} " +
                               $"A {r},{r} 0 {(largeArc ? 1 : 0)},1 " +
-                              $"{endX.ToString("F2", CultureInfo.InvariantCulture)}," +
-                              $"{endY.ToString("F2", CultureInfo.InvariantCulture)}";
+                              $"{endX.ToString("F2", CultureInfo.InvariantCulture)},{endY.ToString("F2", CultureInfo.InvariantCulture)} Z";
 
             return Geometry.Parse(pathData);
         }

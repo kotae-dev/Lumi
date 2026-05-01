@@ -26,8 +26,8 @@ namespace Lumi.Views
                 System.Windows.MessageBox.Show(
                     "Please enter a secret key.",
                     "Validation Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Warning);
                 return;
             }
 
@@ -61,8 +61,8 @@ namespace Lumi.Views
                 System.Windows.MessageBox.Show(
                     "Invalid secret key. Please check and try again.",
                     "Import Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Error);
             }
         }
 

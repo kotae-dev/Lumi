@@ -2,9 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- ═══ Font Families ═══ -->
-    <!-- Using system fonts with fallback; replace with bundled fonts if available -->
-    <FontFamily x:Key="UIFont">Inter, Segoe UI Variable, Segoe UI, sans-serif</FontFamily>
-    <FontFamily x:Key="CodeFont">JetBrains Mono, Cascadia Code, Consolas, monospace</FontFamily>
+    <FontFamily x:Key="UIFont">pack://application:,,,/Assets/Fonts/#JetBrains Mono</FontFamily>
+    <FontFamily x:Key="CodeFont">pack://application:,,,/Assets/Fonts/#JetBrains Mono</FontFamily>
 
     <!-- ═══ Text Styles ═══ -->
     <Style x:Key="TitleText" TargetType="TextBlock">

@@ -55,6 +55,12 @@ namespace Lumi.Core
         [DllImport(DLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern long lumi_get_time();
 
+        [DllImport(DLL, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        public static extern int lumi_ntp_sync(string? server);
+
+        [DllImport(DLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern long lumi_get_corrected_time();
+
         // ─── Vault ──────────────────────────────────────────
         [DllImport(DLL, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern int lumi_vault_init(string vaultPath);

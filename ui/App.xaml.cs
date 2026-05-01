@@ -22,6 +22,11 @@ namespace Lumi
 
             string vaultPath = Path.Combine(vaultDir, "vault.lumi");
             VaultManager.Instance.Initialize(vaultPath);
+
+            // Sync with Google NTP server in background
+            System.Threading.Tasks.Task.Run(() => {
+                Lumi.Core.NativeInterop.lumi_ntp_sync("time.google.com");
+            });
         }
 
         protected override void OnExit(ExitEventArgs e)

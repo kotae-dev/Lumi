@@ -19,23 +19,10 @@
 
             <!-- ═══ Left: Issuer + Name ═══ -->
             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                <!-- Issuer icon placeholder (first 2 letters) -->
-                <Border Background="{DynamicResource AccentDimBrush}"
-                        CornerRadius="6"
-                        Width="32" Height="32"
-                        HorizontalAlignment="Left"
-                        Margin="0,0,0,6">
-                    <TextBlock Text="{Binding Issuer, FallbackValue=??}"
-                               FontSize="11"
-                               FontWeight="Bold"
-                               Foreground="{DynamicResource AccentBrush}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center" />
-                </Border>
-
                 <!-- Name (display mode) -->
                 <TextBlock Text="{Binding Name}"
                            Style="{StaticResource IssuerLabel}"
+                           TextTrimming="CharacterEllipsis"
                            Visibility="{Binding IsEditing, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}"
                            MouseLeftButtonDown="OnNameDoubleClick"
                            Cursor="Hand"
@@ -92,10 +79,7 @@
                              Fill="Transparent" />
 
                     <!-- Progress arc -->
-                    <Path Stroke="{DynamicResource AccentBrush}"
-                          StrokeThickness="3"
-                          StrokeStartLineCap="Round"
-                          StrokeEndLineCap="Round"
+                    <Path Fill="{DynamicResource AccentBrush}"
                           Data="{Binding Progress, Converter={StaticResource TimeToArc}}" />
 
                     <!-- Seconds label -->

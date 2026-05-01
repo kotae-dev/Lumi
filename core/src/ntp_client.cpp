@@ -95,11 +95,11 @@ int lumi_ntp_sync(const char* server) {
 
 __declspec(dllexport)
 int64_t lumi_get_corrected_time(void) {
-    return static_cast<int64_t>(time(nullptr)) + g_ntp_offset;
+    return static_cast<int64_t>(time(nullptr)) + g_ntp_offset - 1;
 }
 
 } // extern "C"
 
 int64_t get_current_time_with_ntp() {
-    return static_cast<int64_t>(time(nullptr)) + g_ntp_offset;
+    return static_cast<int64_t>(time(nullptr)) + g_ntp_offset - 1;
 }

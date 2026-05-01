@@ -44,9 +44,20 @@ namespace Lumi.ViewModels
             ? $"{Code[..4]} {Code[4..]}"
             : $"{Code[..3]} {Code[3..]}";
 
-        public double Progress => _native.Period > 0
-            ? SecondsLeft / (double)_native.Period
-            : SecondsLeft / 30.0;
+        public string IconText
+        {
+            get
+            {
+                string text = !string.IsNullOrWhiteSpace(Issuer) ? Issuer.Trim() :
+                              !string.IsNullOrWhiteSpace(Name) ? Name.Trim() : "?";
+                if (string.IsNullOrEmpty(text)) return "?";
+                if (text.Length >= 2 && char.IsLetterOrDigit(text[0]) && char.IsLetterOrDigit(text[1]))
+                {
+                    return text.Substring(0, 1).ToUpperInvariant();
+                }
+                return text.Substring(0, 1).ToUpperInvariant();
+            }
+        }
 
         public bool IsExpiringSoon => SecondsLeft <= 5;
 
@@ -56,6 +67,9 @@ namespace Lumi.ViewModels
         public IRelayCommand DeleteCommand { get; }
 
         public event Action? AccountDeleted;
+
+        [ObservableProperty]
+        private double _progress;
 
         public AccountItemViewModel(LumiAccountNative native)
         {
@@ -69,7 +83,7 @@ namespace Lumi.ViewModels
             CommitEditCommand = new RelayCommand(CommitEdit);
             DeleteCommand = new RelayCommand(Delete);
 
-            _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(200) };
+            _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(30) };
             _timer.Tick += OnTimerTick;
             _timer.Start();
 
@@ -105,7 +119,16 @@ namespace Lumi.ViewModels
             }
 
             SecondsLeft = secsLeft;
-            OnPropertyChanged(nameof(Progress));
+
+            // Calculate precise smooth progress
+            int period = _native.Period > 0 ? _native.Period : 30;
+            long ms = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            double fraction = 1.0 - ((ms % 1000) / 1000.0);
+            if (secsLeft == period && fraction < 0.1) fraction = 1.0; // avoid flicker
+            double preciseSeconds = Math.Max(0, secsLeft - 1 + fraction);
+            
+            Progress = preciseSeconds / period;
+
             OnPropertyChanged(nameof(IsExpiringSoon));
         }
 

@@ -1,3 +1,5 @@
+using System;
+
 namespace Lumi.Core
 {
     /// <summary>
@@ -75,5 +77,22 @@ namespace Lumi.Core
             !string.IsNullOrWhiteSpace(Issuer) ? Issuer :
             !string.IsNullOrWhiteSpace(Name) ? Name :
             "Unknown";
+
+        /// <summary>
+        /// Text for the circular icon (e.g. "G" for Google).
+        /// </summary>
+        public string IconText
+        {
+            get
+            {
+                string text = DisplayName.Trim();
+                if (string.IsNullOrEmpty(text)) return "?";
+                if (text.Length >= 2 && char.IsLetterOrDigit(text[0]) && char.IsLetterOrDigit(text[1]))
+                {
+                    return text.Substring(0, 1).ToUpperInvariant();
+                }
+                return text.Substring(0, 1).ToUpperInvariant();
+            }
+        }
     }
 }
