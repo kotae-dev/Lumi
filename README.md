@@ -3,7 +3,7 @@
 > **The Windows-native TOTP authenticator.** Local-first, vault-secured — **C++ core** meets a **WPF .NET 10** frontend. Designed for speed, security with DPAPI/Bcrypt, and seamless Google Authenticator QR migration.
 
 <p align="center">
-  <img alt="Stars" src="https://img.shields.io/github/stars/user/Lumi?style=for-the-badge&labelColor=0d1117&color=ffd700&logo=github&logoColor=white" />
+  <img alt="Stars" src="https://img.shields.io/github/stars/kotae-dev/Lumi?style=for-the-badge&labelColor=0d1117&color=ffd700&logo=github&logoColor=white" />
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" />
   <img alt="Platform" src="https://img.shields.io/badge/platform-Windows%2010%2B-black?style=flat-square" />
   <img alt="C++" src="https://img.shields.io/badge/core-C++20-00599C?style=flat-square&logo=c%2B%2B" />
@@ -69,7 +69,7 @@ Lumi also features native QR code decoding via ZXing-C++ and built-in protocol b
 Lumi is built natively using CMake and the .NET SDK.
 
 ```bash
-git clone https://github.com/yourusername/Lumi.git
+git clone https://github.com/kotae-dev/Lumi.git
 cd Lumi
 git submodule update --init --recursive
 mkdir build && cd build
