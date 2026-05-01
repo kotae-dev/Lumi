@@ -2,7 +2,7 @@
 
 > **Windows 네이티브 TOTP 인증기.** 로컬 우선, 금고(Vault) 보안 — **C++ 코어**와 **WPF .NET 10** 프론트엔드의 만남. DPAPI/Bcrypt를 활용한 속도와 보안, 그리고 매끄러운 Google Authenticator QR 마이그레이션을 위해 설계되었습니다.
 >
-> 💡 **LUMOS STUDIO의 버랜좌가 개발하였습니다.**
+> **LUMOS STUDIO의 버랜좌가 개발하였습니다.**
 
 <p align="center">
   <img alt="Stars" src="https://img.shields.io/github/stars/kotae-dev/Lumi?style=for-the-badge&labelColor=0d1117&color=ffd700&logo=github&logoColor=white" />
