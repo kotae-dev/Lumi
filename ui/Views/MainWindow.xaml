@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource BackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
-        Icon="Assets/lumi-icon.ico">
+        Icon="/Assets/lumi-icon.ico">
 
     <Window.Resources>
         <conv:BoolToVisibilityConverter x:Key="BoolToVis" />
