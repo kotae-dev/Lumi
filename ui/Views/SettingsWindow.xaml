@@ -9,7 +9,7 @@
         ExtendsContentIntoTitleBar="True"
         ResizeMode="NoResize">
 
-    <Grid>
+    <Grid Background="{DynamicResource ApplicationBackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -23,7 +23,7 @@
             <TextBlock Text="Appearance" Style="{StaticResource TitleText}" Margin="0,0,0,12" />
 
             <TextBlock Text="Theme" Style="{StaticResource AccountLabel}" Margin="0,0,0,4" />
-            <ComboBox x:Name="ThemeCombo" SelectedIndex="0" Margin="0,0,0,20"
+            <ComboBox x:Name="ThemeCombo" Margin="0,0,0,20"
                       SelectionChanged="OnThemeChanged">
                 <ComboBoxItem Content="System Default" Tag="system" />
                 <ComboBoxItem Content="Dark" Tag="dark" />

@@ -55,12 +55,21 @@
                         VerticalAlignment="Center">
                     <Grid>
                         <!-- Code display -->
-                        <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                        <Border x:Name="CodeDisplay"
+                                Background="{DynamicResource ControlFillColorDefaultBrush}"
                                 CornerRadius="8"
-                                Padding="12,6"
-                                Visibility="{Binding ShowCopied, Converter={StaticResource BoolToVis}, ConverterParameter=Inverse}">
+                                Padding="12,6">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowCopied}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
                             <StackPanel>
-                                <TextBlock Text="{Binding CurrentCode, Converter={StaticResource CodeFormatter}}"
+                                <TextBlock Text="{Binding Code, Converter={StaticResource CodeFormatter}}"
                                            Style="{StaticResource CodeLabel}" />
                                 <TextBlock Text="Click to copy"
                                            Style="{StaticResource HintLabel}"
@@ -70,10 +79,12 @@
                         </Border>
 
                         <!-- Copied feedback -->
-                        <Border Background="{DynamicResource SystemFillColorSuccessBrush}"
+                        <Border x:Name="CopiedFeedback"
+                                Background="{DynamicResource SystemFillColorSuccessBrush}"
                                 CornerRadius="8"
                                 Padding="12,6"
-                                Visibility="{Binding ShowCopied, Converter={StaticResource BoolToVis}}">
+                                Opacity="0"
+                                IsHitTestVisible="False">
                             <TextBlock Text="✓ Copied"
                                        Style="{StaticResource CodeLabel}"
                                        FontSize="16"
@@ -82,6 +93,52 @@
                                        VerticalAlignment="Center" />
                         </Border>
                     </Grid>
+                    
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource CodeButton}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ShowCopied}" Value="True">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CopiedFeedback" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CopiedFeedback" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" To="1.05" Duration="0:0:0.1" />
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" To="1.05" Duration="0:0:0.1" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" To="1.0" Duration="0:0:0.1" />
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" To="1.0" Duration="0:0:0.1" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform CenterX="40" CenterY="20" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
 
                 <!-- Circular countdown ring -->
